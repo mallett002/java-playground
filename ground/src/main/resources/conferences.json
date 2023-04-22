@@ -1,0 +1,96 @@
+{
+  "ACC": {
+    "id": "210a44ee-0a18-53bc-b8c3-d8643a28a422",
+    "name": "ACC",
+    "teams": [
+      "507ea176-a4d1-5792-bb13-d462d01ff4d6",
+      "5ebb146d-2326-5e49-acde-be6c1b244efc",
+      "71864f82-619b-5a1e-a3da-afb21fd30ba2",
+      "7159697c-7abc-50f1-9e34-a788855320b4",
+      "b307c2d3-c034-5ce3-97e7-e58f3f6ac469",
+      "d2c1cee2-7cc7-5b1c-97d3-e38aef3bed3e",
+      "4937812d-e650-53a7-9977-3503222fe114",
+      "95a5c022-e8b8-5aca-bc0c-14f223670560",
+      "d3d927a5-1af0-53cd-b33e-47fd5d03bc5f",
+      "4105cc1c-0944-5b80-96a8-74a5a9e1c725",
+      "157df537-a7b6-5032-9a83-4e96637771ab",
+      "293681ff-90de-5ba8-b274-cf6464bf313b",
+      "993bc05d-0f95-59a6-bda0-37318b9074d9",
+      "ce287654-fe3d-5e59-85d1-bcae8cc9f01e"
+    ]
+  },
+  "BIG_12": {
+    "id": "8da21b75-a1d8-58ec-8134-691cf7eceeca",
+    "name": "Big 12",
+    "teams": [
+      "6e9844a0-1052-5d10-82a0-702aede5f9e8",
+      "c0ca2300-d8b5-532d-80e7-3cf6be240cf9",
+      "c3887f33-b4e2-5762-a5c0-ace8e6a786a3",
+      "01ea3299-3d6b-533e-b159-78fd7c4a6626",
+      "dc1ff726-aea3-55bd-a0fa-43d62f963a13",
+      "6691ec9e-e9e0-524c-8a93-7b8dd1b14815",
+      "35b855c6-4ee1-521f-b47d-36a9732ecacf",
+      "bc830b2a-dfdf-5d1a-98ca-22aa49d1ccb5",
+      "bf6eb3c4-5abf-51b0-b441-f205783008e0",
+      "6953cfbb-d893-53c6-bdb6-f02852953fad"
+    ]
+  },
+  "BIG_TEN": {
+    "id": "6f0dde57-4c4c-5994-aec3-f0bd1a8e0c76",
+    "name": "Big Ten",
+    "teams": [
+      "979711ea-654e-5e6b-a3f7-c861e7d48695",
+      "82f1aff8-0911-56ca-8bd5-680ee0673465",
+      "499af318-38a1-5a95-b183-9c3c79bdba8d",
+      "bfad2dcc-3779-5ca3-81ff-383c5c9079f1",
+      "868531b1-b4f4-5b3c-8cba-399626dd7ad0",
+      "daf80bf8-e74d-5ae4-b2fd-607b14eca383",
+      "771c94c2-f134-5b66-ae09-5a773635f61e",
+      "535fe37a-a963-54f0-8f6e-fea1ed9b0624",
+      "c0dd3545-281b-542b-9f35-66bc77a8882d",
+      "61a0ebfe-6481-53ee-8f14-3421cd0aaadd",
+      "318fd9d9-d0ba-5e96-a289-7c2e3eb2aabf",
+      "404f2911-589f-53ad-a628-e74c015fd4a5",
+      "0f4701f9-bf50-5983-8e67-842160e0569f",
+      "181bf52a-ff55-5ec2-ac65-307146560492"
+    ]
+  },
+  "PAC_12": {
+    "id": "ed38a92a-0404-5883-a342-04d26e5937b6",
+    "name": "Pac-12",
+    "teams": [
+      "3a9de57d-f95c-5853-819b-ac07bb0a6853",
+      "76538583-26e3-5707-b225-b10d1f22c4f0",
+      "767b8000-6f66-5b5e-9d42-17c4b431a9c5",
+      "d111db4a-a1ad-5ad0-891a-797a3afefb99",
+      "05b330d2-0072-5463-a460-5ddd144998a8",
+      "e56f3a91-6e54-58a2-903a-bbf31326abfd",
+      "2709c921-4f7c-57f4-b0c8-aa49509509d0",
+      "fd80a3e2-b4d5-5b3e-a48c-11cf17d3d354",
+      "2e7e8049-82b6-5dc7-9f8d-8c935debfa0d",
+      "ac807e74-bc8f-52cc-a22e-038978913391",
+      "68d104e1-c7d2-5915-8984-5673405b28fd",
+      "08127bb3-9d5c-5dda-b67d-7d874939f305"
+    ]
+  },
+  "SEC": {
+    "id": "81f7d9d8-a468-538e-94a5-a8ecee9d812b",
+    "name": "SEC",
+    "teams": [
+      "4b12810d-a767-54da-9a8a-9e7c04210ec9",
+      "7020a591-1f9e-5344-862c-5be835cb9d5a",
+      "a506b451-d7fa-5c90-8dc8-f0e72b002c6b",
+      "5d559080-4ca7-593b-864f-c445adc1597e",
+      "b5137a52-84d6-5492-972a-23220d2571d8",
+      "b24b8bdc-dece-5c8e-922d-f68a48dee3f4",
+      "88ac25d9-671a-54b5-ac76-72ac40a3ee7e",
+      "2e684898-bd76-5507-86de-ab9f628e2edc",
+      "20305084-91b9-5676-ab01-700ad06ff5e5",
+      "46b66057-7513-5013-88d7-bebb6421b77c",
+      "86c384c7-8b26-58ac-ac90-18e1dcf9e4d2",
+      "c11aebfa-fc5f-580a-8042-5bf73b5c9218",
+      "cfdd797c-6cf8-51c3-8aac-29dc79880baf",
+      "e43e5799-d55d-51fe-bf3d-152806daeb0f"
+    ]
+  }
+}
