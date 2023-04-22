@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -15,4 +16,5 @@ public class Item {
     private long sku;
     private String name;
     private float price;
+    private List<UUID> locations;
 }

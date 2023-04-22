@@ -7,6 +7,7 @@ import net.datafaker.providers.base.Name;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @Data
 public class StoreFactory {
@@ -68,6 +69,18 @@ public class StoreFactory {
         return cart;
     }
 
+    private List<UUID> pickStoreIdsForItem() {
+        List<UUID> storeIds = new ArrayList<>();
+
+        int maxStoreCount = random.nextInt(stores.size());
+
+        for (int i = 0; i < maxStoreCount; i++) {
+            storeIds.add(getRandomEntity(stores).getId());
+        }
+
+        return storeIds;
+    }
+
     private Address getRandomAddress() {
         return new Address(
                 faker.address().city(),
@@ -99,7 +112,8 @@ public class StoreFactory {
                     java.util.UUID.randomUUID(),
                     faker.barcode().ean13(),
                     faker.commerce().productName(),
-                    random.nextFloat()
+                    random.nextFloat(),
+                    pickStoreIdsForItem()
             ));
         }
 
