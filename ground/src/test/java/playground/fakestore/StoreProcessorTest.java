@@ -15,12 +15,26 @@ public class StoreProcessorTest {
     }
 
     @Test
-    public void getStoreWithHighestInventory() {
-        Store store = processor.storeWithHighestInventory();
+    public void testGetStoreWithHighestInventory() {
+        Store store = processor.getStoreWithHighestInventory();
 
         System.out.println(store);
     }
 
-    // most expensive store
-    // most loyal customer
+    @Test
+    public void testGetMostCommonlyPurchasedItem() {
+        Item item = processor.getMostCommonlyPurchasedItem();
+
+        System.out.println(item);
+    }
+
+    @Test
+    public void getMostExpensiveStore() {
+
+    }
+
+    @Test
+    public void getMostLoyalCustomer() {
+
+    }
 }

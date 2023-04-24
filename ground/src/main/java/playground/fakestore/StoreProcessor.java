@@ -1,9 +1,13 @@
 package playground.fakestore;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import playground.Pair;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -11,12 +15,14 @@ public class StoreProcessor {
 
     @Getter
     StoreFactory storeFactory;
+    ObjectMapper mapper;
 
     public StoreProcessor() {
         storeFactory = new StoreFactory();
+        mapper = new ObjectMapper();
     }
 
-    public Store storeWithHighestInventory() {
+    public Store getStoreWithHighestInventory() {
         List<Item> items = storeFactory.getItems();
 
         return storeFactory.getStores().stream()
@@ -82,5 +88,43 @@ public class StoreProcessor {
 //        int largestInventoryCount = inventoryCountsByStoreId.values().stream().max(Integer::compare).get();
 //        String expectedStoreWithLargestInventory = inventoryCountsByStoreId.keySet().stream().min((a, b) -> inventoryCountsByStoreId.get(b).compareTo(inventoryCountsByStoreId.get(a)))
 //                .orElse(null);
+    }
+
+    public Item getMostCommonlyPurchasedItem() {
+    /*
+    * orders
+    *   items flatmap
+    *       item uuid
+    *       hashmap<uuid, occuranceCount>
+            return highest
+    *
+    * */
+
+        Map<UUID, Pair<Item, Integer>> occurrencesByUuid = storeFactory.getOrders().stream()
+                .flatMap(order -> order.getItems().stream())
+                .reduce(
+                        new HashMap<>(),
+                        (accum, item) -> {
+                            if (!accum.containsKey(item.getId())) {
+                                accum.put(item.getId(), new Pair<>(item, 1));
+                            } else {
+                                Pair<Item, Integer> pair = accum.get(item.getId());
+                                pair.setRight(pair.getRight() + 1);
+                                accum.put(item.getId(), pair);
+                            }
+
+                            return accum;
+                        },
+                        (mapOne, mapTwo) -> {
+                            mapOne.putAll(mapTwo);
+                            return mapOne;
+                        }
+                );
+
+        Pair<Item, Integer> maxPair = Collections.max(
+                occurrencesByUuid.entrySet(),
+                Comparator.comparingInt(entry -> entry.getValue().getRight())).getValue();
+
+        return maxPair.getLeft();
     }
 }
