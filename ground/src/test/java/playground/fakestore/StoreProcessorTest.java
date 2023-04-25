@@ -29,12 +29,14 @@ public class StoreProcessorTest {
     }
 
     @Test
-    public void getMostExpensiveStore() {
+    public void testGetHighestPayingCustomer() {
+        Customer customer = processor.getHighestPayingCustomer();
 
+        System.out.println(customer);
     }
 
     @Test
-    public void getMostLoyalCustomer() {
+    public void testGetMostExpensiveStore() {
 
     }
 }

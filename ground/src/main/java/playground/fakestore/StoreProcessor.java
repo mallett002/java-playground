@@ -127,4 +127,45 @@ public class StoreProcessor {
 
         return maxPair.getLeft();
     }
+
+    public Customer getHighestPayingCustomer() {
+        /*
+            orders ->
+                reduce to {customerId -> amount}
+                get highestAmt
+        */
+
+        Map<UUID, Double> amountByCustomerId = getStoreFactory().getOrders().stream()
+                .reduce(
+                        new HashMap<>(),
+                        (memo, order) -> {
+                            Double orderTotal = order.getItems().stream()
+                                    .reduce(0.00,
+                                            (total, item) -> total + item.getPrice(),
+                                            Double::sum
+                                    );
+                            UUID customerId = order.getCustomer().getId();
+
+                            if (!memo.containsKey(customerId)) {
+                                memo.put(customerId, orderTotal);
+                            } else {
+                                memo.put(customerId, memo.get(customerId) + orderTotal);
+                            }
+
+                            return memo;
+                        },
+                        (mapOne, mapTwo) -> {
+                            mapOne.putAll(mapTwo);
+
+                            return mapOne;
+                        }
+                );
+
+        UUID customerID = Collections.max(
+                amountByCustomerId.entrySet(),
+                Comparator.comparingDouble(Map.Entry::getValue)).getKey();
+
+        return getStoreFactory().getCustomers().stream()
+                .filter(c -> c.getId().equals(customerID)).findAny().orElse(null);
+    }
 }
