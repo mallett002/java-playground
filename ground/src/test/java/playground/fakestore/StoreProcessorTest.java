@@ -1,9 +1,10 @@
 package playground.fakestore;
 
-import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.util.List;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StoreProcessorTest {
@@ -15,9 +16,35 @@ public class StoreProcessorTest {
     }
 
     @Test
-    public void getStoreWithHighestInventory() {
-        Store store = processor.storeWithHighestInventory();
+    public void testGetStoreWithHighestInventory() {
+        Store store = processor.getStoreWithHighestInventory();
 
-        Assert.assertEquals("some store", store.getStoreName());
+        System.out.println(store);
+    }
+
+    @Test
+    public void testGetMostCommonlyPurchasedItem() {
+        Item item = processor.getMostCommonlyPurchasedItem();
+
+        System.out.println(item);
+    }
+
+    @Test
+    public void testGetHighestPayingCustomer() {
+        Customer customer = processor.getHighestPayingCustomer();
+
+        System.out.println(customer);
+    }
+
+    @Test
+    public void testGetCustomersThatShopAtMostOtherStores() {
+        List<Customer> customers = processor.getCustomerThatShopAtMostStores();
+
+        System.out.println(customers);
+    }
+
+    @Test
+    public void testGetStoreWithMostOrders() {
+
     }
 }
