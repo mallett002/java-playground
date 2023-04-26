@@ -125,11 +125,14 @@ public class StoreFactory {
 
         for (int i = 0; i < 200; i++) {
             Customer customer = getRandomEntity(customers);
+            Store store = random.nextBoolean()
+                    ? getRandomEntity(getStores())
+                    : customer.getStore();
 
             orders.add(new Order(
                     java.util.UUID.randomUUID(),
                     customer,
-                    customer.getStore(),
+                    store,
                     pickAFewItems()
             ));
         }

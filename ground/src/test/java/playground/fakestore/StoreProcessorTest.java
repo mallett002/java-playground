@@ -1,9 +1,10 @@
 package playground.fakestore;
 
-import junit.framework.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
+import java.util.List;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StoreProcessorTest {
@@ -36,7 +37,14 @@ public class StoreProcessorTest {
     }
 
     @Test
-    public void testGetMostExpensiveStore() {
+    public void testGetCustomersThatShopAtMostOtherStores() {
+        List<Customer> customers = processor.getCustomerThatShopAtMostStores();
+
+        System.out.println(customers);
+    }
+
+    @Test
+    public void testGetStoreWithMostOrders() {
 
     }
 }

@@ -168,4 +168,49 @@ public class StoreProcessor {
         return getStoreFactory().getCustomers().stream()
                 .filter(c -> c.getId().equals(customerID)).findAny().orElse(null);
     }
+
+    public List<Customer> getCustomerThatShopAtMostStores() {
+        Map<UUID, List<UUID>> storeCountByCustomerId = getStoreFactory().getOrders().stream()
+                .reduce(
+                        new HashMap<>(),
+                        (map, order) -> {
+                            UUID id = order.getCustomer().getId();
+
+                            if (!map.containsKey(id)) {
+                                List<UUID> storeIds = new ArrayList<>();
+                                storeIds.add(order.getStore().getId());
+                                map.put(id, storeIds);
+                            } else {
+                                List<UUID> storeIds = map.get(id);
+                                UUID storeId = order.getStore().getId();
+
+                                if (!storeIds.contains(storeId)) {
+                                    storeIds.add(storeId);
+                                    map.put(id, storeIds);
+                                }
+                            }
+
+                            return map;
+                        },
+                        (mapOne, mapTwo) -> {
+                            mapOne.putAll(mapTwo);
+                            return mapOne;
+                        }
+                );
+
+        int largestCount = Collections.max(
+                storeCountByCustomerId.entrySet(),
+                Comparator.comparingInt(entry -> entry.getValue().size())
+        ).getValue().size();
+
+        return storeCountByCustomerId.entrySet().stream()
+                .filter(entry -> entry.getValue().size() == largestCount)
+                .map(Map.Entry::getKey)
+                .map(id ->
+                        getStoreFactory().getCustomers().stream()
+                                .filter(customer -> customer.getId().equals(id))
+                                .findAny().orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+    }
 }
