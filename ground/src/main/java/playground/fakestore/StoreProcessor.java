@@ -213,4 +213,43 @@ public class StoreProcessor {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
+
+    public Store getStoresWithMostOrders() {
+//        orders -> store -> {storeId: Pair<Store, count>}
+//         return largest count
+        Map<UUID, Pair<Store, Integer>> storeCountsByStoreId = getStoreFactory().getOrders().stream()
+                .reduce(
+                        new HashMap<>(),
+                        (map, order) -> {
+                            UUID storeId = order.getStore().getId();
+
+                            if (!map.containsKey(storeId)) {
+                                Pair<Store, Integer> storeToCount = new Pair<>(order.getStore(), 1);
+                                map.put(storeId, storeToCount);
+
+                                return map;
+                            } else {
+                                Pair<Store, Integer> storeToCount = map.get(storeId);
+                                storeToCount.setRight(storeToCount.getRight() + 1);
+
+                                map.put(storeId, storeToCount);
+
+                                return map;
+                            }
+                        },
+                        (mapOne, mapTwo) -> {
+                            mapOne.putAll(mapTwo);
+
+                            return mapOne;
+                        });
+
+        // Todo: turn into List<Store> with most in case there are more than one winner
+
+        Store theStore = Collections.max(
+                storeCountsByStoreId.entrySet(),
+                Comparator.comparingInt(entry -> entry.getValue().getRight())
+        ).getValue().getLeft();
+
+        return theStore;
+    }
 }

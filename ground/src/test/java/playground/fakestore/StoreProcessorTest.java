@@ -44,7 +44,9 @@ public class StoreProcessorTest {
     }
 
     @Test
-    public void testGetStoreWithMostOrders() {
+    public void testGetStoresWithMostOrders() {
+        Store store = processor.getStoresWithMostOrders();
 
+        System.out.println(store);
     }
 }
