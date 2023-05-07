@@ -214,9 +214,10 @@ public class StoreProcessor {
                 .collect(Collectors.toList());
     }
 
-    public Store getStoresWithMostOrders() {
+    public List<Store> getStoresWithMostOrders() {
 //        orders -> store -> {storeId: Pair<Store, count>}
-//         return largest count
+//        get count
+//        map to list of ones with that count
         Map<UUID, Pair<Store, Integer>> storeCountsByStoreId = getStoreFactory().getOrders().stream()
                 .reduce(
                         new HashMap<>(),
@@ -231,7 +232,6 @@ public class StoreProcessor {
                             } else {
                                 Pair<Store, Integer> storeToCount = map.get(storeId);
                                 storeToCount.setRight(storeToCount.getRight() + 1);
-
                                 map.put(storeId, storeToCount);
 
                                 return map;
@@ -243,13 +243,14 @@ public class StoreProcessor {
                             return mapOne;
                         });
 
-        // Todo: turn into List<Store> with most in case there are more than one winner
-
-        Store theStore = Collections.max(
+        Integer count = Collections.max(
                 storeCountsByStoreId.entrySet(),
                 Comparator.comparingInt(entry -> entry.getValue().getRight())
-        ).getValue().getLeft();
+        ).getValue().getRight();
 
-        return theStore;
+        return storeCountsByStoreId.values().stream()
+                .filter(storeIntegerPair -> Objects.equals(storeIntegerPair.getRight(), count))
+                .map(Pair::getLeft)
+                .collect(Collectors.toList());
     }
 }
