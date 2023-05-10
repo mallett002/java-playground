@@ -85,7 +85,7 @@ public class StoreFactory {
         return new Address(
                 faker.address().city(),
                 faker.address().state(),
-                faker.address().country(),
+                "United States",
                 faker.address().streetName());
     }
 

@@ -253,4 +253,40 @@ public class StoreProcessor {
                 .map(Pair::getLeft)
                 .collect(Collectors.toList());
     }
+
+    public List<String> sortStatesByMostBusiness() {
+        /*
+            orders -> aggregate purchase amt per state Map<state: amount>
+            turn into list of state names
+        */
+        Map<String, Double> statesByPurchaseTotal = getStoreFactory().getOrders().stream()
+                .reduce(
+                        new HashMap<>(),
+                        (map, order) -> {
+                            String state = order.getStore().getAddress().getState();
+                            double purchaseTotal = order.getItems().stream()
+                                    .mapToDouble(Item::getPrice)
+                                    .sum();
+
+                            if (!map.containsKey(state)) {
+                                map.put(state, purchaseTotal);
+                            } else {
+                                double newTotal = purchaseTotal + map.get(state);
+                                map.put(state, newTotal);
+                            }
+
+                            return map;
+                        },
+                        (mapOne, mapTwo) -> {
+                            mapOne.putAll(mapTwo);
+
+                            return mapOne;
+                        }
+                );
+
+        return statesByPurchaseTotal.entrySet().stream()
+                .sorted((entryOne, entryTwo) -> entryTwo.getValue().compareTo(entryOne.getValue()))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+    }
 }

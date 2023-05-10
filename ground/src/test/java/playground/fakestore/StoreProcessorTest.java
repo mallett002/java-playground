@@ -49,4 +49,12 @@ public class StoreProcessorTest {
 
         System.out.println(stores);
     }
+
+    @Test
+    public void testSortStatesByMostBusiness() {
+        List<String> states = processor.sortStatesByMostBusiness();
+
+        System.out.println(states);
+    }
+
 }
