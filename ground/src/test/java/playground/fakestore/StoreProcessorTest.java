@@ -44,7 +44,17 @@ public class StoreProcessorTest {
     }
 
     @Test
-    public void testGetStoreWithMostOrders() {
+    public void testGetStoresWithMostOrders() {
+        List<Store> stores = processor.getStoresWithMostOrders();
 
+        System.out.println(stores);
     }
+
+    @Test
+    public void testSortStatesByMostBusiness() {
+        List<String> states = processor.sortStatesByMostBusiness();
+
+        System.out.println(states);
+    }
+
 }
